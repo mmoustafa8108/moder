@@ -11,9 +11,9 @@ you can imagine moder as 7 different main lines, each serves a specific type of 
 - bigger slabs line: this is for 513-1024 sized allocations.
 - semi max slabs line: this is for 1025-2048 sized allocations.
 - max slabs line: this is for 2049-4096 sized allocations.
-**allocations greater than 4096 bytes shouldn't be handled with the slab system.**
-**all size in bytes.**
 
+**all size in bytes.**
+note: allocations bigger than 4096 byte will be requrested from the OS directly (e.g. via VirtualAlloc() in windows or mmap() in linux).
 
 why we used slabs with fixed sizes? to avoid fragmentation, because if I used a giant memory pool for all sizes of object I'll have to compact the memory at some point which will introduce the dangling pointers problem.
 
